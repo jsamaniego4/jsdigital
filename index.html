@@ -456,15 +456,14 @@ thead th.us .bm svg{border-radius:6px}
 .portrait .cap svg{flex:none;border-radius:12px}
 .about .copy p{font-size:20px;line-height:1.6;max-width:56ch}
 .about .copy p+p{margin-top:18px;color:var(--muted)}
-.creds{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
-.xp-list{list-style:none;margin:22px 0 0;padding:0;display:grid;border-top:1px solid var(--line)}
-.xp-list li{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:4px 20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}
-.xp-list b{font-weight:600}
-.xp-list span{color:var(--muted)}
-@media (max-width:560px){.xp-list li{grid-template-columns:1fr}}
-.creds div{padding:20px;border-radius:18px;background:var(--soft);display:grid;gap:8px;align-content:start}
-.creds b{font:600 30px/1 var(--f-sans);letter-spacing:-.03em;color:var(--accent-text)}
-.creds span{font-size:15px;color:var(--muted);line-height:1.4}
+.creds{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:34px}
+.creds div{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:14px 12px;align-items:start;padding:26px 24px 24px;border-radius:22px;background:linear-gradient(155deg,rgba(242,106,27,.09),transparent 55%),var(--card);border:1px solid var(--line);transition:transform .25s,border-color .25s,box-shadow .25s}
+.creds div::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),rgba(242,106,27,0) 75%)}
+.creds div:hover{transform:translateY(-3px);border-color:rgba(242,106,27,.45);box-shadow:0 24px 50px -28px rgba(242,106,27,.45)}
+.creds b{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;font:600 44px/1 var(--f-sans);letter-spacing:-.04em;color:var(--accent-text)}
+.creds b small{font:500 15px/1 var(--f-sans);letter-spacing:.02em;color:var(--ink)}
+.creds i{width:46px;height:46px;border-radius:14px;background:rgba(242,106,27,.12);border:1px solid rgba(242,106,27,.25);color:var(--accent-text);display:grid;place-items:center}
+.creds span{grid-column:1/-1;font-size:15.5px;color:var(--muted);line-height:1.45;padding-top:14px;border-top:1px solid var(--line)}
 .about .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .about .links .btn{min-height:50px;font-size:16px;padding:0 22px}
 @media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px}.portrait{max-width:240px}}
@@ -1060,17 +1059,11 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
         <p>I'm Jorge, a software engineer from Long Island. At Leviton, I build AI apps, APIs, and automations on Azure for enterprise IT. I started JS Digital Co. to bring that same technology to local businesses, without the enterprise price tag.</p>
         <p>You deal with me directly. I'll learn how your business runs, explain everything without jargon, and only automate what makes sense.</p>
         <div class="creds">
-          <div><b>15+ hrs</b><span>of manual work saved per week with automations I built in enterprise IT</span></div>
-          <div><b>~50%</b><span>faster document lookups with an Azure OpenAI knowledge assistant</span></div>
-          <div><b>~30%</b><span>less repetitive data entry from APIs connecting business systems</span></div>
-          <div><b>80+</b><span>business computers deployed and set up for client companies</span></div>
+          <div><b>15+<small>hrs / week</small></b><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span>Manual work saved with automations I built in enterprise IT</span></div>
+          <div><b>~50%<small>faster</small></b><i><svg width="22" height="22" aria-hidden="true"><use href="#spark"/></svg></i><span>Document lookups with an Azure OpenAI knowledge assistant</span></div>
+          <div><b>~30%<small>less</small></b><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></i><span>Repetitive data entry, using APIs that connect business systems</span></div>
+          <div><b>80+<small>computers</small></b><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg></i><span>Business machines deployed and set up for client companies</span></div>
         </div>
-        <ul class="xp-list" aria-label="Experience">
-          <li><b>Leviton</b><span>AI &amp; automation engineering · Azure OpenAI, FastAPI, Power Automate</span></li>
-          <li><b>Linux Foundation</b><span>Production Java shipped to the open-source Zowe SDK</span></li>
-          <li><b>Tech 2020 Solutions</b><span>Client servers, networks &amp; device rollouts</span></li>
-          <li><b>RamHacks 2026</b><span>1st place, AI track</span></li>
-        </ul>
         <div class="links">
           <a class="btn btn-primary" href="#assess">Talk to Jorge <svg width="20" height="20" aria-hidden="true"><use href="#arr"/></svg></a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/jorge-samaniego048" target="_blank" rel="noopener">View LinkedIn ↗</a>
