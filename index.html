@@ -573,6 +573,7 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
                 <option value="">Select one</option><option>Just me</option><option>2–10</option><option>11–50</option><option>50+</option>
               </select></div>
           </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <button class="btn btn-primary" type="submit">Book My Free Consultation <svg width="20" height="20" aria-hidden="true"><use href="#arr"/></svg></button>
           <p class="fine"><svg width="18" height="18" aria-hidden="true"><use href="#shield"/></svg>Your info stays private. Jorge replies within one business day.</p>
           <div class="sent" id="sent" role="status" aria-live="polite"></div>
@@ -1040,21 +1041,41 @@ document.querySelectorAll('.photo img').forEach(function(img){
   img.addEventListener('error',bad);
 });
 
-/* Consultation form: no server here, so it opens an email to Jorge and shows the details to copy. */
+/* Consultation form: posts to FormSubmit, which emails the request to Jorge. The visitor never leaves the page.
+   The first submission sends Jorge a one-time activation email; requests arrive after he confirms it. */
 (function(){
-  var f=document.getElementById('assess'), out=document.getElementById('sent'), TO='jorgemsamaniego@gmail.com';
+  var f=document.getElementById('assess'), out=document.getElementById('sent'), btn=f.querySelector('button[type=submit]');
+  var ENDPOINT='https://formsubmit.co/ajax/jorgemsamaniego@gmail.com';
+  function esc(s){return String(s).replace(/[<>&]/g,'')}
+  function say(html){out.className='sent show';out.innerHTML=html}
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var miss=[].filter.call(f.querySelectorAll('[required]'),function(el){return !el.value.trim()});
-    if(miss.length){out.className='sent show';out.innerHTML='<b>Almost there.</b> Please fill in your first name, business name, phone, and what you need help with.';miss[0].focus();return;}
-    var d=new FormData(f), lines=['Name: '+d.get('first')+' '+(d.get('last')||''),'Business: '+d.get('company'),'Phone: '+d.get('phone'),'Needs help with: '+d.get('need'),'Team size: '+(d.get('size')||'')];
-    var body=lines.join('\n');
-    out.className='sent show';
-    out.innerHTML='<b>Thanks, '+String(d.get('first')).replace(/[<>&]/g,'')+'.</b> Your email app should open with your details. If it didn\'t, copy them and send to '+TO+'.<br><button type="button" id="copyReq">Copy my details</button>';
-    document.getElementById('copyReq').addEventListener('click',function(){
-      var b=this; try{navigator.clipboard.writeText(body).then(function(){b.textContent='Copied'},function(){b.textContent='Copy failed'})}catch(err){b.textContent='Copy failed'}
-    });
-    try{window.location.href='mailto:'+TO+'?subject='+encodeURIComponent('Consultation request: '+d.get('company'))+'&body='+encodeURIComponent(body)}catch(err){}
+    if(miss.length){say('<b>Almost there.</b> Please fill in your first name, business name, phone, and what you need help with.');miss[0].focus();return;}
+    var d=new FormData(f);
+    if(d.get('_honey')) return;
+    var data={
+      _subject:'New consultation request: '+d.get('company'),
+      _template:'table',
+      _captcha:'false',
+      'Name':(d.get('first')+' '+(d.get('last')||'')).trim(),
+      'Business':d.get('company'),
+      'Phone':d.get('phone'),
+      'Needs help with':d.get('need'),
+      'Team size':d.get('size')||'Not given'
+    };
+    var label=btn.innerHTML; btn.disabled=true; btn.textContent='Sending…'; out.className='sent';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()})
+      .then(function(res){
+        if(String(res.success)!=='true') throw new Error(res.message||'not sent');
+        f.reset();
+        say('<b>Thanks, '+esc(data.Name.split(' ')[0])+'. Your request is in.</b> Jorge will reach out within one business day.');
+      })
+      .catch(function(){
+        say('<b>Sorry, that didn\'t go through.</b> Please call or text <a href="tel:+16315783517">(631) 578-3517</a> or email <a href="mailto:jorgemsamaniego@gmail.com">jorgemsamaniego@gmail.com</a>.');
+      })
+      .then(function(){btn.disabled=false;btn.innerHTML=label});
   });
 })();
 
