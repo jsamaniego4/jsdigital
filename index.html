@@ -330,15 +330,12 @@ section{padding-block:120px}
 .lines-hero{position:relative;overflow:hidden;isolation:isolate;background:#0A0806;color:var(--on-night);min-height:min(80vh,780px);display:grid;align-items:center}
 .lines-hero>.wrap{width:100%}
 .lh-visual{position:absolute;top:0;bottom:0;right:0;width:52%;z-index:-1}
+.lh-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(1) contrast(1.1) brightness(.7);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
 .lh-visual svg{position:absolute;inset:0;width:100%;height:100%}
 .lh-visual path{fill:none;stroke-width:11;stroke-linecap:round;stroke-linejoin:round;opacity:.88;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s cubic-bezier(.6,0,.2,1) forwards}
 .lh-visual path:nth-child(2){animation-delay:.08s}.lh-visual path:nth-child(3){animation-delay:.16s}.lh-visual path:nth-child(4){animation-delay:.24s}
 .lh-visual path:nth-child(5){animation-delay:.32s}.lh-visual path:nth-child(6){animation-delay:.4s}.lh-visual path:nth-child(7){animation-delay:.48s}.lh-visual path:nth-child(8){animation-delay:.56s}
 @keyframes draw{to{stroke-dashoffset:0}}
-.lines-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(50% 75% at 78% 45%,rgba(242,106,27,.24),transparent 65%),radial-gradient(40% 60% at 0% 100%,rgba(242,106,27,.08),transparent 70%)}
-.lines-hero::after{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(80% 90% at 70% 45%,#000 25%,transparent 80%);mask-image:radial-gradient(80% 90% at 70% 45%,#000 25%,transparent 80%)}
-.lh-visual .pulse path{stroke:#FFF6EC;stroke-width:5;opacity:.95;stroke-dasharray:.035 .965;stroke-dashoffset:1;animation:flow 4.5s linear infinite;filter:drop-shadow(0 0 6px rgba(255,170,90,.9))}
-@keyframes flow{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .lh-copy{max-width:min(600px,44vw);padding-block:96px}
 .lh-kicker{font:600 15px/1.3 var(--f-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .lines-hero h1{font-size:clamp(46px,6.2vw,92px);font-weight:500;line-height:1;letter-spacing:-.035em;margin-top:26px}
@@ -346,7 +343,7 @@ section{padding-block:120px}
 .lines-hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
 .lines-hero .btn-ghost{color:var(--on-night);box-shadow:inset 0 0 0 2px rgba(255,255,255,.3)}
 .lines-hero .btn-ghost:hover{box-shadow:inset 0 0 0 2px var(--on-night)}
-@media (max-width:900px){.lh-copy{max-width:none}.lh-visual{width:100%;opacity:.35}.lh-copy{padding-block:72px}}
+@media (max-width:900px){.lh-copy{max-width:none}.lh-visual{width:100%;opacity:.35}.lh-visual img{-webkit-mask-image:none;mask-image:none}.lh-copy{padding-block:72px}}
 
 /* tools strip: scrolls sideways, pauses on hover */
 .tools{background:var(--soft);border-bottom:1px solid var(--line);padding-block:34px 32px;overflow:hidden}
@@ -552,7 +549,7 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
 .offer p{font-size:19px;color:#5F5952;max-width:34ch}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-@media (prefers-reduced-motion:reduce){.lh-visual path{stroke-dashoffset:0}.lh-visual .pulse{display:none}.track{width:auto}.set{flex-wrap:wrap;justify-content:center;padding:0 16px}.set+.set{display:none}}
+@media (prefers-reduced-motion:reduce){.lh-visual path{stroke-dashoffset:0}.track{width:auto}.set{flex-wrap:wrap;justify-content:center;padding:0 16px}.set+.set{display:none}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -730,8 +727,8 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
   <!-- SERVICES HERO -->
   <div class="lines-hero" id="services">
     <div class="lh-visual" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1664575262619-b28fef7a40a4?auto=format&fit=crop&w=1600&q=70" alt="">
       <svg viewBox="0 0 800 700" preserveAspectRatio="xMaxYMid slice">
-        <g class="stripes">
         <path pathLength="1" stroke="#F26A1B" d="M230 170H720L800 40"/>
         <path pathLength="1" stroke="#FF8A3D" d="M255 215H720L800 110"/>
         <path pathLength="1" stroke="#F5C14B" d="M275 262H720L800 192"/>
@@ -740,17 +737,6 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
         <path pathLength="1" stroke="#C2410C" d="M280 410H720L800 440"/>
         <path pathLength="1" stroke="#FF8A3D" d="M260 460H720L800 535"/>
         <path pathLength="1" stroke="#F5C14B" d="M235 505H720L800 620"/>
-        </g>
-        <g class="pulse">
-        <path style="animation-delay:-0.0s" pathLength="1" d="M230 170H720L800 40"/>
-        <path style="animation-delay:-0.7s" pathLength="1" d="M255 215H720L800 110"/>
-        <path style="animation-delay:-1.4s" pathLength="1" d="M275 262H720L800 192"/>
-        <path style="animation-delay:-2.1s" pathLength="1" d="M295 310H720L800 280"/>
-        <path style="animation-delay:-2.8s" pathLength="1" d="M300 360H720L800 360"/>
-        <path style="animation-delay:-3.5s" pathLength="1" d="M280 410H720L800 440"/>
-        <path style="animation-delay:-4.2s" pathLength="1" d="M260 460H720L800 535"/>
-        <path style="animation-delay:-4.9s" pathLength="1" d="M235 505H720L800 620"/>
-        </g>
       </svg>
     </div>
     <div class="wrap">
