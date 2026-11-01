@@ -389,6 +389,8 @@ a.wf{text-decoration:none;color:inherit}
 .res .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
 .res .metric{font:600 clamp(44px,5vw,70px)/1 var(--f-sans);letter-spacing:-.04em;color:var(--accent-text);min-width:0}
 .res .metric .ph{font-size:.34em;color:var(--ink);vertical-align:middle}
+.res:not(.main) .metric{font-size:clamp(38px,4vw,54px)}
+.res .metric small{display:block;margin-top:10px;font:500 18px/1.2 var(--f-sans);letter-spacing:0;color:var(--muted)}
 .res .pill{font:600 13px/1 var(--f-sans);letter-spacing:.04em;padding:9px 13px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
 .res h3{font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
 .res .lbl{font-size:17.5px;color:var(--muted)}
@@ -1016,7 +1018,7 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
       </div>
       <div class="res-grid">
         <article class="res main">
-          <div class="top"><div class="metric"><span class="ph">[e.g. 5 hrs/week saved]</span></div><span class="pill">Construction &amp; paving</span></div>
+          <div class="top"><div class="metric">15+<small>hrs / week saved</small></div><span class="pill">Construction &amp; paving</span></div>
           <h3>JR Construction Paving: an AI lead assistant</h3>
           <p class="lbl">JR was spending hours searching for jobs to bid on. Now an automation does the searching and sends him the best ones every week.</p>
           <ul>
@@ -1029,10 +1031,15 @@ dialog.offer::backdrop{background:rgba(10,8,6,.55);backdrop-filter:blur(10px)}
           <div class="who"><span class="av" aria-hidden="true">JR</span><div><b>JR</b><span>Owner, JR Construction Paving</span></div></div>
         </article>
         <article class="res">
-          <div class="top"><div class="metric"><span class="ph">[e.g. 2x calls]</span></div><span class="pill">Website &amp; marketing</span></div>
-          <h3>Rick's Clean Whips: website &amp; Google integration</h3>
-          <p class="lbl">A new business site with live Google reviews pulled in automatically, plus an optimized Google Business Profile.</p>
-          <div class="stack"><span>Website</span><span>Google reviews</span><span>Business Profile</span></div>
+          <div class="top"><div class="metric">Less admin.<small>More time detailing.</small></div><span class="pill">Auto detailing</span></div>
+          <h3>Rick's Clean Whips: website &amp; automations</h3>
+          <p class="lbl">Rick wanted to spend his time on cars, not on tech and paperwork. We built his website and automated his calendar and email, so the organizing runs itself.</p>
+          <ul>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#chk"/></svg>Business website with live Google reviews</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#chk"/></svg>Calendar automation that keeps bookings organized</li>
+            <li><svg width="18" height="18" aria-hidden="true"><use href="#chk"/></svg>Email automation that keeps the inbox under control</li>
+          </ul>
+          <div class="stack"><span>Website</span><span>Google reviews</span><span>Calendar automation</span><span>Email automation</span></div>
           <blockquote><span class="ph">[Quote from Rick]</span></blockquote>
           <div class="who"><span class="av" aria-hidden="true">R</span><div><b>Rick</b><span>Owner, Rick's Clean Whips</span></div><a href="https://rickscleanwhips.com" target="_blank" rel="noopener">Visit site ↗</a></div>
         </article>
